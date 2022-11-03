@@ -1,0 +1,79 @@
+.PostItem {
+  margin-top: 30px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #fff;
+  gap: 6px;
+  border-radius: 10px;
+
+  .userPost {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    > img {
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      object-fit: cover;
+      border-radius: 100%;
+    }
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  > img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--bgColor);
+  }
+
+  .postReact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .postIcon {
+      width: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 0px;
+      gap: 4px;
+
+      &:hover {
+        cursor: pointer;
+        border-radius: 6px;
+        background-color: var(--bgColor);
+      }
+
+      .icon {
+        font-size: 26px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .PostItem {
+    .postReact {
+      .postIcon {
+        .icon {
+          font-size: 20px;
+        }
+        span {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

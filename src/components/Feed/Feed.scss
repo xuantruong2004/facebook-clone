@@ -1,0 +1,11 @@
+.Feed {
+  padding: 0px 20px;
+  flex: 3;
+  margin-left: 320px;
+}
+
+@media screen and (max-width: 992px) {
+  .Feed {
+    margin-left: 0;
+  }
+}

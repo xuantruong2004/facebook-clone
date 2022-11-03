@@ -1,0 +1,69 @@
+.LeftSideBar {
+  flex: 1;
+  position: fixed;
+  top: 78px;
+  left: 42px;
+  width: 320px;
+  height: 100vh;
+  overflow-y: scroll;
+
+  .sideBarList {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ccc;
+
+    a {
+      text-decoration: none;
+    }
+    .sidebarItem {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: start;
+      padding: 8px;
+      height: 52px;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: #e3e6e9;
+        cursor: pointer;
+      }
+      .ImageItem {
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        object-fit: cover;
+        color: #0778e8;
+      }
+
+      .title {
+        font-size: 14px;
+        color: var(--textColor);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .UserWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    > p {
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .UserList {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .LeftSideBar {
+    display: none;
+  }
+}

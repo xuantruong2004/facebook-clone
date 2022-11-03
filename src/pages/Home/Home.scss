@@ -1,0 +1,20 @@
+.HomeContainer {
+  width: 100%;
+}
+
+.MainContainer {
+  display: flex;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  padding: 10px 50px 0 42px;
+  margin-top: 70px;
+
+  background-color: var(--bgColor);
+}
+
+@media screen and (max-width: 679px) {
+  .MainContainer {
+    padding: 0;
+  }
+}

@@ -1,0 +1,21 @@
+:root {
+  --bgColor: #f0f2f5;
+  --textColor: #313131;
+  --primaryColor: #0d80d8;
+}
+
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 8px;
+  height: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+}

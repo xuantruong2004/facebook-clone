@@ -1,0 +1,33 @@
+.profile {
+  .profileContainer {
+    margin-top: 70px;
+    padding: 0 200px;
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+    background-color: var(--bgColor);
+    height: auto;
+    min-height: 100vh;
+
+    .Left {
+      flex: 2;
+      width: 20%;
+    }
+
+    .Right {
+      flex: 5;
+      width: 80%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    .profileContainer {
+      padding: 0 10px;
+    }
+    .Left {
+      display: none;
+    }
+  }
+}

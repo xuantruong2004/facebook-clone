@@ -208,11 +208,8 @@
 @media only screen and (max-width: 556px) {
   .navbarContainer {
     padding: 10px 10px;
-    gap: 26px;
     .navbar-left {
-      .navbar-search {
-        // display: none;
-      }
+      width: calc(100% - 60px);
     }
     .navbar-right {
       justify-content: space-between;

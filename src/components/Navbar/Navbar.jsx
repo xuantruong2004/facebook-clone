@@ -13,9 +13,12 @@ import "tippy.js/dist/tippy.css"; // optional
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import ImageProfile from "../../img/defaultProfile.jpg";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/AuthAction";
+import { useEffect } from "react";
+import { getSearchUser } from "../../api/UserRequest";
+import { useDebounce } from "../../hooks";
 
 const Navbar = () => {
   const [modal, setModal] = useState(false);
@@ -30,6 +33,30 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(logout());
   };
+
+  const [searchValue, setSearchValue] = useState("");
+  const [userSearch, setUserSearch] = useState([]);
+
+  const debounce = useDebounce(searchValue, 300);
+
+  useEffect(() => {
+    const fetchSearchUser = async () => {
+      const { data } = await getSearchUser(debounce.trim());
+      setUserSearch(data);
+    };
+    if (!searchValue) {
+      setUserSearch([]);
+    } else {
+      fetchSearchUser();
+    }
+  }, [debounce]);
+
+  const navigate = useNavigate();
+  const GotoUser = (id) => {
+    navigate(`/profile/${id}`);
+    setUserSearch([]);
+  };
+
   return (
     <div className="navbarContainer">
       <div className="navbar-left">
@@ -38,7 +65,29 @@ const Navbar = () => {
         </Link>
         <div className="navbar-search">
           <SearchOutlinedIcon className="IconSearch" />
-          <input type="text" placeholder="#Explore" className="input" />
+          <input
+            type="text"
+            placeholder="#Explore"
+            className="input"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          {userSearch.length > 0 && (
+            <div className="modalSearch">
+              {userSearch.map((user) => (
+                <div
+                  className="userItem"
+                  key={user._id}
+                  onClick={() => GotoUser(user._id)}
+                >
+                  <img src={user?.profileImage} alt="" className="image" />
+                  <span>
+                    {user?.firstname} {user?.lastname}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

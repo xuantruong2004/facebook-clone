@@ -25,6 +25,7 @@ const Profile = () => {
       }
     };
     fetchProfileUser();
+    window.scrollTo(0, 0);
   }, [profileUserId, user]);
 
   return (

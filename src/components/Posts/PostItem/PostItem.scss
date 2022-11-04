@@ -61,6 +61,96 @@
       }
     }
   }
+
+  .userComment {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 5px;
+    .imageUser {
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .input {
+      background-color: var(--bgColor);
+      padding: 5px 10px;
+      width: calc(100% - 70px);
+      border-radius: 50px;
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 100%;
+      }
+    }
+
+    button {
+      padding: 5px 5px;
+      border: none;
+      background: var(--primaryColor);
+      color: #fff;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  }
+
+  .getComment {
+    display: flex;
+    gap: 5px;
+    .imageUser {
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .comment {
+      background-color: var(--bgColor);
+      padding: 5px 10px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+
+      .name {
+        font-size: 12px;
+        font-weight: 500;
+
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .desc {
+        font-size: 14px;
+      }
+
+      .time {
+        margin-top: 5px;
+        display: flex;
+        justify-content: flex-end;
+
+        span {
+          font-size: 10px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {

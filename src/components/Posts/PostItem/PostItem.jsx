@@ -10,11 +10,17 @@ import PostPic1 from "../../../img/postpic1.jpg";
 import { useSelector } from "react-redux";
 import { likePost } from "../../../api/PostRequest";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
+import { uploadComment } from "../../../api/UploadRequest";
+import { useEffect } from "react";
+import { getComment } from "../../../api/CommentRequest";
+import Comment from "../Comment/Comment";
 
 const PostItem = ({ data, persons }) => {
   const { user } = useSelector((state) => state.auth.authData);
   const [liked, setLiked] = useState(data.like.includes(user._id));
   const [like, setLike] = useState(data.like.length);
+  const [comments, setComments] = useState([]);
 
   const userId = persons.find((person) => person._id === data.userId);
 
@@ -25,9 +31,37 @@ const PostItem = ({ data, persons }) => {
   };
 
   const navigate = useNavigate();
-  const GotoProfile = () => {
-    navigate(`/profile/${userId._id}`);
+  const GotoProfile = (id) => {
+    navigate(`/profile/${id}`);
   };
+
+  const desc = useRef();
+  const handleComment = async () => {
+    const comment = {
+      postId: data._id,
+      userId: user._id,
+      desc: desc.current.value,
+    };
+    await uploadComment(comment);
+
+    const commentAdd = {
+      _id: new Date().getTime(),
+      ...comment,
+      createdAt: new Date().getTime(),
+    };
+
+    setComments((prev) => [commentAdd, ...prev]);
+    desc.current.value = "";
+  };
+
+  useEffect(() => {
+    const fetchComment = async () => {
+      const comments = await getComment(data._id);
+      setComments(comments.data);
+    };
+
+    fetchComment();
+  }, []);
 
   return (
     <div className="PostItem">
@@ -35,9 +69,9 @@ const PostItem = ({ data, persons }) => {
         <img
           src={userId?.profileImage ? userId?.profileImage : PostPic1}
           alt="imageUser"
-          onClick={GotoProfile}
+          onClick={() => GotoProfile(userId._id)}
         />
-        <span onClick={GotoProfile}>
+        <span onClick={() => GotoProfile(userId._id)}>
           {userId?.firstname} {userId?.lastname}
         </span>
       </div>
@@ -72,6 +106,31 @@ const PostItem = ({ data, persons }) => {
           <span>share</span>
         </div>
       </div>
+
+      <div className="line"></div>
+
+      <div className="userComment">
+        <div className="imageUser" onClick={() => GotoProfile(user._id)}>
+          <img
+            src={user?.profileImage ? user?.profileImage : PostPic1}
+            alt="imageProofile"
+          />
+        </div>
+        <div className="input">
+          <input
+            type="text"
+            placeholder="write a comment"
+            ref={desc}
+            required
+          />
+        </div>
+        <button onClick={handleComment}>send</button>
+      </div>
+
+      {comments.length > 0 &&
+        comments.map((comment) => (
+          <Comment comment={comment} key={comment._id} persons={persons} />
+        ))}
     </div>
   );
 };

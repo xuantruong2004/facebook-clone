@@ -103,6 +103,18 @@
     }
   }
 
+  .seeMore {
+    display: flex;
+    justify-content: flex-end;
+    span {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--primaryColor);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
   .getComment {
     display: flex;
     gap: 5px;

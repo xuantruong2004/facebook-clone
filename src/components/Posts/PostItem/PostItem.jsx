@@ -21,6 +21,7 @@ const PostItem = ({ data, persons }) => {
   const [liked, setLiked] = useState(data.like.includes(user._id));
   const [like, setLike] = useState(data.like.length);
   const [comments, setComments] = useState([]);
+  const [seeMore, setSeeMore] = useState(false);
 
   const userId = persons.find((person) => person._id === data.userId);
 
@@ -126,8 +127,27 @@ const PostItem = ({ data, persons }) => {
         </div>
         <button onClick={handleComment}>send</button>
       </div>
+      {comments.length > 3 && (
+        <div className="seeMore">
+          <span onClick={() => setSeeMore(!seeMore)}>See more</span>
+        </div>
+      )}
 
-      {comments.length > 0 &&
+      {!seeMore &&
+        comments.length <= 3 &&
+        comments.map((comment) => (
+          <Comment comment={comment} key={comment._id} persons={persons} />
+        ))}
+
+      {!seeMore &&
+        comments.length > 3 &&
+        comments
+          .filter((comment, index) => index < 3)
+          .map((comment) => (
+            <Comment comment={comment} key={comment._id} persons={persons} />
+          ))}
+
+      {seeMore &&
         comments.map((comment) => (
           <Comment comment={comment} key={comment._id} persons={persons} />
         ))}

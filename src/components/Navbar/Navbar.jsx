@@ -136,7 +136,7 @@ const Navbar = () => {
           </div>
         </Tippy>
 
-        <div className="boxIconRight" onClick={handleClick}>
+        <div className="boxIconUser" onClick={handleClick}>
           <img
             src={user?.profileImage ? user?.profileImage : ImageProfile}
             alt="imageProfile"

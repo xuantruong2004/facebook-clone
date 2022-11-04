@@ -120,7 +120,8 @@
     align-items: center;
     justify-content: center;
 
-    .boxIconRight {
+    .boxIconRight,
+    .boxIconUser {
       width: 40px;
       height: 40px;
       display: flex;
@@ -210,12 +211,15 @@
     gap: 26px;
     .navbar-left {
       .navbar-search {
-        display: none;
+        // display: none;
       }
     }
     .navbar-right {
-      flex: 1;
       justify-content: space-between;
+
+      .boxIconRight {
+        display: none;
+      }
     }
   }
 }

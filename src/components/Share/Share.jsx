@@ -7,12 +7,13 @@ import { AiOutlineClose } from "react-icons/ai";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase.config";
 
-import PostPic1 from "../../img/postpic1.jpg";
+import PostPic1 from "../../img/defaultProfile.jpg";
 import "./Share.scss";
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadPost } from "../../actions/UploadAction";
+import { useNavigate } from "react-router-dom";
 
 const Share = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,11 @@ const Share = () => {
   const desc = useRef();
 
   const { user } = useSelector((state) => state.auth.authData);
+
+  const navigate = useNavigate();
+  const GotoProfile = () => {
+    navigate(`/profile/${user._id}`);
+  };
 
   const onImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -73,6 +79,7 @@ const Share = () => {
         src={user?.profileImage ? user?.profileImage : PostPic1}
         alt=""
         className="imageUser"
+        onClick={GotoProfile}
       />
       <div className="ShareContent">
         <div className="input">

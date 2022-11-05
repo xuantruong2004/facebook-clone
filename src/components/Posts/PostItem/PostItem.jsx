@@ -6,7 +6,7 @@ import { RiShareForwardLine } from "react-icons/ri";
 import moment from "moment/moment";
 
 import "./PostItem.scss";
-import PostPic1 from "../../../img/postpic1.jpg";
+import PostPic1 from "../../../img/defaultProfile.jpg";
 import { useSelector } from "react-redux";
 import { likePost } from "../../../api/PostRequest";
 import { useNavigate } from "react-router-dom";

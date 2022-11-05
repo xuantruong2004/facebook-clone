@@ -1,0 +1,119 @@
+.messageLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 15px;
+
+  .headerChat {
+    display: flex;
+    justify-content: space-between;
+
+    .box-Icon {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+
+      .Item {
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bgColor);
+      }
+    }
+  }
+
+  .SearchChat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+
+    .inputSearch {
+      width: 100%;
+      background: var(--bgColor);
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 50px;
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 14px;
+      }
+    }
+
+    button {
+      padding: 4px 8px;
+      border: none;
+      color: #fff;
+      font-weight: 500;
+      background: var(--primaryColor);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .modalSearch {
+      position: absolute;
+      width: 100%;
+      background-color: #fff;
+      top: 40px;
+      left: 0;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 2px 4px 10px 1px rgb(202 197 197 / 50%);
+
+      .userItem {
+        padding: 5px 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .image {
+          width: 32px;
+          height: 32px;
+          object-fit: cover;
+          border-radius: 100%;
+        }
+
+        span {
+          font-size: 14px;
+        }
+
+        &:hover {
+          background: rgb(243, 240, 240);
+        }
+      }
+    }
+  }
+
+  .ChatList {
+    .chatItem {
+      padding: 5px 10px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 5px;
+      overflow: hidden;
+
+      &:hover {
+        background-color: var(--bgColor);
+      }
+
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

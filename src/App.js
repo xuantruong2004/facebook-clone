@@ -4,6 +4,7 @@ import Profile from "./pages/Profile/Profile";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./pages/Auth/Auth";
 import { useSelector } from "react-redux";
+import Message from "./pages/Message/Message";
 
 function App() {
   const user = useSelector((state) => state.auth.authData);
@@ -27,6 +28,10 @@ function App() {
         <Route
           path="/profile/:id"
           element={user ? <Profile /> : <Navigate to="../auth" />}
+        />
+        <Route
+          path="/message"
+          element={user ? <Message /> : <Navigate to="../auth" />}
         />
       </Routes>
     </div>

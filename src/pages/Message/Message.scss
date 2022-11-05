@@ -1,0 +1,15 @@
+.message-container {
+  margin-top: 77px;
+  height: calc(100vh - 77px);
+  display: flex;
+  padding: 20px 50px;
+
+  .message-left {
+    flex: 2;
+    border-right: 2px solid var(--bgColor);
+  }
+
+  .message-right {
+    flex: 5;
+  }
+}

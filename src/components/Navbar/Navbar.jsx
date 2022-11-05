@@ -57,6 +57,10 @@ const Navbar = () => {
     setUserSearch([]);
   };
 
+  const GotoMessage = () => {
+    navigate("/message");
+  };
+
   return (
     <div className="navbarContainer">
       <div className="navbar-left">
@@ -126,7 +130,7 @@ const Navbar = () => {
           </div>
         </Tippy>
         <Tippy delay={[100, 100]} content="Message" placement="bottom">
-          <div className="boxIconRight">
+          <div className="boxIconRight" onClick={GotoMessage}>
             <BsMessenger className="Icon" />
           </div>
         </Tippy>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./userItem.scss";
-import ImageProfile from "../../img/img1.png";
+import ImageProfile from "../../img/defaultProfile.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { followUser, unFollowUser } from "../../actions/UserAction";
 import { Link, useNavigate } from "react-router-dom";

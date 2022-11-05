@@ -32,4 +32,18 @@
     color: white;
     border-radius: 6px;
   }
+
+  .imageUser {
+    display: flex;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .infoForm {
+    .imageUser {
+      flex-direction: column;
+      font-size: 12px;
+    }
+  }
 }

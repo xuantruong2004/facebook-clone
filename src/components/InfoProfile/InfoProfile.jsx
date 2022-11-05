@@ -9,15 +9,28 @@ import "./InfoProfile.scss";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTimelinePosts } from "../../actions/PostAction";
+import { followUser, unFollowUser } from "../../actions/UserAction";
 const InfoProfile = ({ profileUser }) => {
   const dispatch = useDispatch();
   const [modalOpened, setModalOpened] = useState(false);
   const { user } = useSelector((state) => state.auth.authData);
   let { posts, loading } = useSelector((state) => state.post);
 
+  const [following, setFollowing] = useState();
+
+  const handleFollow = () => {
+    following
+      ? dispatch(unFollowUser(profileUser._id, user))
+      : dispatch(followUser(profileUser._id, user));
+    setFollowing((prev) => !prev);
+  };
+
   useEffect(() => {
     dispatch(getTimelinePosts(profileUser._id));
-  }, [profileUser]);
+    if (profileUser?.followers) {
+      setFollowing(profileUser.followers.includes(user._id));
+    }
+  }, [profileUser?._id]);
   return (
     <div className="InfoProfile">
       <div className="ImageProfile">
@@ -47,6 +60,15 @@ const InfoProfile = ({ profileUser }) => {
           setModalOpened={setModalOpened}
           data={user}
         />
+
+        {user._id !== profileUser._id && (
+          <button
+            className={following ? "unfollow" : "follow"}
+            onClick={handleFollow}
+          >
+            {following ? "unfollow" : "follow"}
+          </button>
+        )}
       </div>
       <div className="info">
         <h4>

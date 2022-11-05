@@ -90,6 +90,9 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
     }, 2000);
     setModalOpened(false);
   };
+
+  const widthScreen = window.screen.availWidth;
+
   return (
     <Modal
       overlayColor={
@@ -99,7 +102,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
       }
       overlayOpacity={0.55}
       overlayBlur={3}
-      size="55%"
+      size={widthScreen > 1000 ? "55%" : "100%"}
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
@@ -162,11 +165,15 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
             value={formData.relationship}
           />
         </div>
-        <div>
-          Profile Image
-          <input type="file" name="profileImage" onChange={onImageChange} />
-          Cover Image
-          <input type="file" name="coverImage" onChange={onImageChange} />
+        <div className="imageUser">
+          <div className="imageItem">
+            Profile Image
+            <input type="file" name="profileImage" onChange={onImageChange} />
+          </div>
+          <div className="imageItem">
+            Cover Image
+            <input type="file" name="coverImage" onChange={onImageChange} />
+          </div>
         </div>
         <button className="infoButton" onClick={handleUpdate}>
           Update

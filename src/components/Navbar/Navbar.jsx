@@ -41,7 +41,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchSearchUser = async () => {
-      const { data } = await getSearchUser(debounce.trim());
+      const { data } = await getSearchUser(debounce.trim().toLowerCase());
       setUserSearch(data);
     };
     if (!searchValue) {

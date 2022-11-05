@@ -1,0 +1,17 @@
+.userModal {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    width: 100%;
+    text-align: center;
+    color: var(--primaryColor);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .user {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+}

@@ -15,10 +15,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "../../api/UserRequest";
 import { logout } from "../../actions/AuthAction";
+import UserModal from "../UserModal/UserModal";
 
 const LeftSideBar = () => {
   const [persons, setPersons] = useState([]);
   const { user } = useSelector((state) => state.auth.authData);
+  const [modalOpened, setModalOpened] = useState(false);
   useEffect(() => {
     const fetchPersons = async () => {
       const { data } = await getAllUser();
@@ -59,10 +61,29 @@ const LeftSideBar = () => {
       <div className="UserWrapper">
         <p>People you may know</p>
         <div className="UserList">
-          {persons &&
+          {persons.length <= 2 &&
             persons.map((person) => (
               <UserItem key={person._id} person={person} />
             ))}
+          {persons.length > 2 &&
+            persons
+              .filter((person, index) => index < 2)
+              .map((person) => <UserItem key={person._id} person={person} />)}
+          <div className="seeMore">
+            <span
+              onClick={() => {
+                setModalOpened(true);
+              }}
+            >
+              See More
+            </span>
+          </div>
+
+          <UserModal
+            modalOpened={modalOpened}
+            setModalOpened={setModalOpened}
+            persons={persons}
+          />
         </div>
       </div>
     </div>

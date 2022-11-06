@@ -17,6 +17,7 @@ import { getComment } from "../../../api/CommentRequest";
 import Comment from "../Comment/Comment";
 
 const PostItem = ({ data, persons }) => {
+  const id = data._id;
   const { user } = useSelector((state) => state.auth.authData);
   const [liked, setLiked] = useState(data.like.includes(user._id));
   const [like, setLike] = useState(data.like.length);
@@ -39,19 +40,13 @@ const PostItem = ({ data, persons }) => {
   const desc = useRef();
   const handleComment = async () => {
     const comment = {
-      postId: data._id,
+      postId: id,
       userId: user._id,
       desc: desc.current.value,
     };
-    await uploadComment(comment);
+    const { data } = await uploadComment(comment);
 
-    const commentAdd = {
-      _id: new Date().getTime(),
-      ...comment,
-      createdAt: new Date().getTime(),
-    };
-
-    setComments((prev) => [commentAdd, ...prev]);
+    setComments((prev) => [data, ...prev]);
     desc.current.value = "";
   };
 

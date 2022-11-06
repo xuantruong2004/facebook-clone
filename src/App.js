@@ -30,7 +30,7 @@ function App() {
           element={user ? <Profile /> : <Navigate to="../auth" />}
         />
         <Route
-          path="/message"
+          path="/message/:id"
           element={user ? <Message /> : <Navigate to="../auth" />}
         />
       </Routes>

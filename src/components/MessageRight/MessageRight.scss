@@ -1,0 +1,91 @@
+.messageRight {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+  padding: 10px 0 10px;
+
+  .headerBox {
+    padding: 10px 0 10px 20px;
+    border-bottom: 1px solid var(--bgColor);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .infoUser {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+      span {
+        font-style: 16px;
+        font-weight: 600;
+      }
+    }
+
+    .BoxIcon {
+      display: flex;
+      gap: 1px;
+
+      .icon {
+        font-size: 20px;
+        color: #20cef5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        cursor: pointer;
+        &:hover {
+          background-color: var(--bgColor);
+        }
+      }
+    }
+  }
+
+  .container-message {
+    padding: 10px 20px;
+    min-height: calc(100% - 100px);
+    overflow-y: auto;
+  }
+  .add-newMessage {
+    padding: 10px 20px;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    .iconAdd {
+      font-size: 30px;
+      color: #20cef5;
+      cursor: pointer;
+    }
+
+    .inputMessage {
+      width: 100%;
+
+      background: var(--bgColor);
+      border-radius: 5px;
+    }
+
+    button {
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+
+      .iconSend {
+        font-size: 30px;
+        color: #20cef5;
+        cursor: pointer;
+      }
+    }
+  }
+}

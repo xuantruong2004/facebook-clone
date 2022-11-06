@@ -58,7 +58,7 @@ const Navbar = () => {
   };
 
   const GotoMessage = () => {
-    navigate("/message");
+    navigate(`/message/${user._id}`);
   };
 
   return (

@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getUser } from "../../api/UserRequest";
 import ImageProfile from "../../img/defaultProfile.jpg";
 
-const ChatItem = ({ data }) => {
+const ChatItem = ({ data, online, joinRoom }) => {
   const { user } = useSelector((state) => state.auth.authData);
   const [userChat, setUserChat] = useState({});
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ const ChatItem = ({ data }) => {
       onClick={() => handleClickChatId()}
     >
       <img src={userChat?.profileImage || ImageProfile} alt="ImageUser" />
+      {online && <div className="online-dot"></div>}
       <span>
         {userChat?.firstname} {userChat?.lastname}
       </span>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { BsThreeDots, BsFillCameraReelsFill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
@@ -11,7 +11,8 @@ import { getSearchUser } from "../../api/UserRequest";
 import { useSelector } from "react-redux";
 import { createChat, getChats } from "../../api/ChatRequest";
 import ChatItem from "./ChatItem";
-const MessageLeft = () => {
+
+const MessageLeft = ({ onlineUsers }) => {
   const [searchValue, setSearchValue] = useState("");
   const [userSearch, setUserSearch] = useState([]);
   const [userIdChat, setUserIdChat] = useState("");
@@ -57,6 +58,12 @@ const MessageLeft = () => {
     setSearchValue(`${user?.firstname} ${user?.lastname}`);
     setUserIdChat(user._id);
     setUserSearch([]);
+  };
+
+  const checkOnlineStatus = (chat) => {
+    const chatMembers = chat.members.find((member) => member !== user._id);
+    const online = onlineUsers.find((user) => user.userId === chatMembers);
+    return online ? true : false;
   };
 
   return (
@@ -112,7 +119,13 @@ const MessageLeft = () => {
 
       <div className="ChatList">
         {chatList &&
-          chatList.map((chat) => <ChatItem key={chat._id} data={chat} />)}
+          chatList.map((chat) => (
+            <ChatItem
+              key={chat._id}
+              data={chat}
+              online={checkOnlineStatus(chat)}
+            />
+          ))}
       </div>
     </div>
   );

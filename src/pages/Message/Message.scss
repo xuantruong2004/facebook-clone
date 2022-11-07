@@ -11,5 +11,12 @@
 
   .message-right {
     flex: 5;
+
+    .room-chat {
+      text-align: center;
+      font-size: 26px;
+      color: var(--primaryColor);
+      margin-top: 20px;
+    }
   }
 }

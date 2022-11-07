@@ -14,8 +14,10 @@ import { useParams } from "react-router-dom";
 import ChatBox from "../ChatBox/ChatBox";
 import { getChat2Id } from "../../api/ChatRequest";
 import { addMessage, getMessages } from "../../api/MessageRequest";
+import { io } from "socket.io-client";
+import { useRef } from "react";
 
-const MessageRight = () => {
+const MessageRight = ({ onlineUsers, receiverMessage, setSendMessage }) => {
   const { user } = useSelector((state) => state.auth.authData);
   const [userChat, setUserChat] = useState({});
   const [messageList, setMessageList] = useState([]);
@@ -23,6 +25,7 @@ const MessageRight = () => {
 
   const params = useParams();
   const userChatId = params.id;
+
   useEffect(() => {
     const fetchUserId = async () => {
       const { data } = await getUser(userChatId);
@@ -31,7 +34,7 @@ const MessageRight = () => {
     const fetchChatId = async () => {
       const { data } = await getChat2Id(userChatId, user._id);
       const id = data?._id;
-      setIdChat(id);
+      setIdChat(data);
       if (data) {
         const { data } = await getMessages(id);
         setMessageList(data);
@@ -49,19 +52,39 @@ const MessageRight = () => {
   const handleSend = async (e) => {
     e.preventDefault();
     const message = {
-      chatId: idChat,
+      chatId: idChat._id,
       senderId: user._id,
       text: newMessage,
     };
-    console.log(message);
     const { data } = await addMessage(message);
     setMessageList((prev) => [...prev, data]);
     setNewMessage("");
+
+    // send  message to socket server
+    const receiverId = idChat.members.find((id) => id !== user._id);
+    setSendMessage({ ...message, receiverId, _id: new Date().getTime() });
   };
 
   const handleEnter = (e) => {
     if (e.key === "Enter") {
       handleSend(e);
+    }
+  };
+
+  useEffect(() => {
+    if (receiverMessage !== null && receiverMessage.chatId === idChat._id) {
+      console.log("da nhan duoc", [...messageList, receiverMessage]);
+      setMessageList([...messageList, receiverMessage]);
+    }
+  }, [receiverMessage]);
+
+  const checkOnlineStatus = (chat) => {
+    if (chat) {
+      const chatMembers = chat.members.find((member) => member !== user._id);
+      const online = onlineUsers.find((user) => user.userId === chatMembers);
+      return online ? true : false;
+    } else {
+      return false;
     }
   };
 
@@ -73,9 +96,14 @@ const MessageRight = () => {
             src={userChat?.profileImage || ImageProfile}
             alt="imageProfile"
           />
-          <span>
-            {userChat?.firstname} {userChat?.lastname}
-          </span>
+          <div>
+            <span className="name">
+              {userChat?.firstname} {userChat?.lastname}
+            </span>
+            <span className="online">
+              {checkOnlineStatus(idChat) ? "online" : "ofline"}
+            </span>
+          </div>
         </div>
         <div className="BoxIcon">
           <div className="icon">

@@ -49,7 +49,6 @@ const MessageLeft = ({ onlineUsers }) => {
         receiverId: userIdChat,
       };
       setSearchValue("");
-
       const { data } = await createChat(chat);
       setChatList((prev) => [data, ...prev]);
     }

@@ -43,12 +43,13 @@ const MessageLeft = ({ onlineUsers }) => {
   }, []);
 
   const addChat = async () => {
-    setSearchValue("");
-    if (userIdChat) {
+    if (userIdChat && searchValue !== "") {
       const chat = {
         senderId: user?._id,
         receiverId: userIdChat,
       };
+      setSearchValue("");
+
       const { data } = await createChat(chat);
       setChatList((prev) => [data, ...prev]);
     }

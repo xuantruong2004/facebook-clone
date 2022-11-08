@@ -168,6 +168,8 @@ const Navbar = () => {
           )}
         </div>
       </div>
+
+      {modal && <div className="bgModal" onClick={() => setModal(false)}></div>}
     </div>
   );
 };

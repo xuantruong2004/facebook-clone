@@ -1,21 +1,18 @@
 import React from "react";
-import { BsFillTelephoneFill, BsCameraVideoFill } from "react-icons/bs";
+import { BsCameraVideoFill, BsFillTelephoneFill } from "react-icons/bs";
+import { IoIosSend, IoMdAddCircle } from "react-icons/io";
 import { RiErrorWarningFill } from "react-icons/ri";
-import { IoMdAddCircle, IoIosSend } from "react-icons/io";
 import InputEmoji from "react-input-emoji";
 
-import "./MessageRight.scss";
-import ImageProfile from "../../img/defaultProfile.jpg";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getUser } from "../../api/UserRequest";
 import { useParams } from "react-router-dom";
-import ChatBox from "../ChatBox/ChatBox";
 import { getChat2Id } from "../../api/ChatRequest";
 import { addMessage, getMessages } from "../../api/MessageRequest";
-import { io } from "socket.io-client";
-import { useRef } from "react";
+import { getUser } from "../../api/UserRequest";
+import ImageProfile from "../../img/defaultProfile.jpg";
+import ChatBox from "../ChatBox/ChatBox";
+import "./MessageRight.scss";
 
 const MessageRight = ({ onlineUsers, receiverMessage, setSendMessage }) => {
   const { user } = useSelector((state) => state.auth.authData);
@@ -73,7 +70,7 @@ const MessageRight = ({ onlineUsers, receiverMessage, setSendMessage }) => {
 
   useEffect(() => {
     if (receiverMessage !== null && receiverMessage.chatId === idChat._id) {
-      console.log("da nhan duoc", [...messageList, receiverMessage]);
+      // console.log("da nhan duoc", [...messageList, receiverMessage]);
       setMessageList([...messageList, receiverMessage]);
     }
   }, [receiverMessage]);

@@ -37,7 +37,7 @@ const Message = () => {
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
       setReceiverMessage({ ...data });
-      console.log("receiver ", receiverMessage);
+      // console.log("receiver ", receiverMessage);
     });
   }, [socket.current]);
 

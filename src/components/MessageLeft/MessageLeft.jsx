@@ -126,14 +126,6 @@ const MessageLeft = ({ onlineUsers }) => {
               online={checkOnlineStatus(chat)}
             />
           ))}
-        {chatList &&
-          chatList.map((chat) => (
-            <ChatItem
-              key={chat._id}
-              data={chat}
-              online={checkOnlineStatus(chat)}
-            />
-          ))}
       </div>
     </div>
   );

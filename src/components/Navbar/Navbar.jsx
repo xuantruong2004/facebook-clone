@@ -130,7 +130,7 @@ const Navbar = () => {
           </div>
         </Tippy>
         <Tippy delay={[100, 100]} content="Message" placement="bottom">
-          <div className="boxIconRight" onClick={GotoMessage}>
+          <div className="boxIconRight iconMessage" onClick={GotoMessage}>
             <BsMessenger className="Icon" />
           </div>
         </Tippy>

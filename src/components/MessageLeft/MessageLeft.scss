@@ -138,3 +138,28 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .messageLeft {
+    padding-right: 10px;
+    padding-left: 10px;
+    .headerChat {
+      display: none;
+    }
+
+    .ChatList {
+      display: flex;
+      width: 100%;
+      overflow-x: scroll;
+
+      .chatItem {
+        flex-direction: column;
+        min-width: 90px;
+
+        span {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}

@@ -109,3 +109,9 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .messageRight {
+    height: calc(100vh - 290px);
+  }
+}

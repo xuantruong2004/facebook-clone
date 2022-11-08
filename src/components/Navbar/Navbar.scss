@@ -209,14 +209,22 @@
   .navbarContainer {
     padding: 10px 10px;
     .navbar-left {
-      width: calc(100% - 60px);
+      width: calc(100% - 80px);
       gap: 0;
+      margin-right: 5px;
+
+      input {
+        width: 100%;
+      }
     }
     .navbar-right {
       justify-content: space-between;
 
       .boxIconRight {
         display: none;
+      }
+      .boxIconRight.iconMessage {
+        display: flex;
       }
     }
   }

@@ -99,6 +99,8 @@
   }
 
   .ChatList {
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
     .chatItem {
       padding: 5px 10px;
       display: flex;

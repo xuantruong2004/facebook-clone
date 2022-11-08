@@ -68,7 +68,9 @@ const Share = () => {
         }
       );
     } else {
-      dispatch(uploadPost(newPost));
+      if (newPost.desc !== "") {
+        dispatch(uploadPost(newPost));
+      }
     }
 
     reset();

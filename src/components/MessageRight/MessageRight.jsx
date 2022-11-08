@@ -96,6 +96,7 @@ const MessageRight = ({ onlineUsers, receiverMessage, setSendMessage }) => {
             src={userChat?.profileImage || ImageProfile}
             alt="imageProfile"
           />
+          {checkOnlineStatus(idChat) && <div className="online-dot"></div>}
           <div>
             <span className="name">
               {userChat?.firstname} {userChat?.lastname}

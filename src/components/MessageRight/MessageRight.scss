@@ -15,11 +15,22 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      position: relative;
 
       img {
         width: 40px;
         height: 40px;
         object-fit: cover;
+        border-radius: 100%;
+      }
+
+      .online-dot {
+        position: absolute;
+        top: 5px;
+        left: 30px;
+        width: 12px;
+        height: 12px;
+        background: greenyellow;
         border-radius: 100%;
       }
 

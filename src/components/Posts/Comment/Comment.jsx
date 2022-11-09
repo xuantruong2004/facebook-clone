@@ -1,5 +1,5 @@
 import React from "react";
-import PostPic1 from "../../../img/postpic1.jpg";
+import PostPic1 from "../../../img/defaultProfile.jpg";
 import moment from "moment/moment";
 import { useNavigate } from "react-router-dom";
 

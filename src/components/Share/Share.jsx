@@ -20,6 +20,7 @@ const Share = () => {
   const [image, setImage] = useState(null);
   const imageRef = useRef();
   const desc = useRef();
+  const uploading = useSelector((state) => state.post.uploading);
 
   const { user } = useSelector((state) => state.auth.authData);
 
@@ -75,6 +76,7 @@ const Share = () => {
 
     reset();
   };
+
   return (
     <div className="ShareContainer">
       <img
@@ -113,8 +115,12 @@ const Share = () => {
             <CalendarMonthOutlinedIcon className="Icon" />
             <span>Schedule</span>
           </div>
-          <button className="btnShare" onClick={handleShare}>
-            Share
+          <button
+            className="btnShare"
+            disabled={uploading}
+            onClick={handleShare}
+          >
+            {uploading ? "loading..." : "Share"}
           </button>
           <div style={{ display: "none" }}>
             <input

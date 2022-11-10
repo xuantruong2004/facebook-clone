@@ -48,18 +48,20 @@ const MessageRight = ({ onlineUsers, receiverMessage, setSendMessage }) => {
 
   const handleSend = async (e) => {
     e.preventDefault();
-    const message = {
-      chatId: idChat._id,
-      senderId: user._id,
-      text: newMessage,
-    };
-    const { data } = await addMessage(message);
-    setMessageList((prev) => [...prev, data]);
-    setNewMessage("");
+    if (newMessage !== "") {
+      const message = {
+        chatId: idChat._id,
+        senderId: user._id,
+        text: newMessage,
+      };
+      const { data } = await addMessage(message);
+      setMessageList((prev) => [...prev, data]);
+      setNewMessage("");
 
-    // send  message to socket server
-    const receiverId = idChat.members.find((id) => id !== user._id);
-    setSendMessage({ ...message, receiverId, _id: new Date().getTime() });
+      // send  message to socket server
+      const receiverId = idChat.members.find((id) => id !== user._id);
+      setSendMessage({ ...message, receiverId, _id: new Date().getTime() });
+    }
   };
 
   const handleEnter = (e) => {

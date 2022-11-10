@@ -44,7 +44,9 @@ const Share = () => {
 
   const handleShare = async (e) => {
     e.preventDefault();
-    await dispatch(postActions.UPLOAD_START());
+    if (desc.current.value !== "" || image) {
+      await dispatch(postActions.UPLOAD_START());
+    }
 
     const newPost = {
       userId: user._id,

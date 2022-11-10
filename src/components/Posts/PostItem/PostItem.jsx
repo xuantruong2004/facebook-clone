@@ -40,17 +40,19 @@ const PostItem = ({ data, persons }) => {
 
   const desc = useRef();
   const handleComment = async () => {
-    await setLoading(true);
-    const comment = {
-      postId: id,
-      userId: user._id,
-      desc: desc.current.value,
-    };
-    const { data } = await uploadComment(comment);
+    if (desc.current.value !== "") {
+      await setLoading(true);
+      const comment = {
+        postId: id,
+        userId: user._id,
+        desc: desc.current.value,
+      };
+      const { data } = await uploadComment(comment);
 
-    setComments((prev) => [data, ...prev]);
-    desc.current.value = "";
-    setLoading(false);
+      setComments((prev) => [data, ...prev]);
+      desc.current.value = "";
+      setLoading(false);
+    }
   };
 
   useEffect(() => {

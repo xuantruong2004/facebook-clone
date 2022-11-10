@@ -64,7 +64,8 @@
         top: 50px;
         left: 0;
         border-radius: 5px;
-        overflow: hidden;
+        overflow-y: auto;
+        max-height: 300px;
         box-shadow: 2px 4px 10px 1px rgb(202 197 197 / 50%);
 
         .userItem {

@@ -84,7 +84,11 @@ const Navbar = () => {
                   key={user._id}
                   onClick={() => GotoUser(user._id)}
                 >
-                  <img src={user?.profileImage} alt="" className="image" />
+                  <img
+                    src={user?.profileImage || ImageProfile}
+                    alt=""
+                    className="image"
+                  />
                   <span>
                     {user?.firstname} {user?.lastname}
                   </span>

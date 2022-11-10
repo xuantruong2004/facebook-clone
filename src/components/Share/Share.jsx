@@ -14,6 +14,7 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadPost } from "../../actions/UploadAction";
 import { useNavigate } from "react-router-dom";
+import { postActions } from "../../redux/slice/postSlice";
 
 const Share = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const Share = () => {
 
   const handleShare = async (e) => {
     e.preventDefault();
+    await dispatch(postActions.UPLOAD_START());
 
     const newPost = {
       userId: user._id,

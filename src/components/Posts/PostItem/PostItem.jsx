@@ -23,6 +23,7 @@ const PostItem = ({ data, persons }) => {
   const [like, setLike] = useState(data.like.length);
   const [comments, setComments] = useState([]);
   const [seeMore, setSeeMore] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const userId = persons.find((person) => person._id === data.userId);
 
@@ -39,6 +40,7 @@ const PostItem = ({ data, persons }) => {
 
   const desc = useRef();
   const handleComment = async () => {
+    await setLoading(true);
     const comment = {
       postId: id,
       userId: user._id,
@@ -48,6 +50,7 @@ const PostItem = ({ data, persons }) => {
 
     setComments((prev) => [data, ...prev]);
     desc.current.value = "";
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -120,7 +123,9 @@ const PostItem = ({ data, persons }) => {
             required
           />
         </div>
-        <button onClick={handleComment}>send</button>
+        <button onClick={handleComment} disabled={loading}>
+          {loading ? "loading.." : "send"}
+        </button>
       </div>
       {comments.length > 3 && (
         <div className="seeMore">

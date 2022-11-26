@@ -20,7 +20,7 @@ const Message = () => {
   const [sendMessage, setSendMessage] = useState(null);
   const [receiverMessage, setReceiverMessage] = useState(null);
   useEffect(() => {
-    socket.current = io("https://truongxuan-socketfb.herokuapp.com");
+    socket.current = io("https://truongxuan-socket.onrender.com/");
     socket.current.emit("new-add-user", user._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);

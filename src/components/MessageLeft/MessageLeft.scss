@@ -25,6 +25,10 @@
         align-items: center;
         justify-content: center;
         background: var(--bgColor);
+        &:hover {
+          cursor: pointer;
+          background-color: #d2d6db;
+        }
       }
     }
   }
